@@ -1,0 +1,167 @@
+:root {
+	--accentColor: rgb(231, 33, 80);
+	--lineThickness: 3px;
+}
+
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: "ConcertOne";
+	vertical-align: center;
+	outline: 0px blue dotted;
+}
+
+body { 
+	color: white;
+	background-color: #000000;
+	font-family: Arial;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2em;
+	margin-top: 5%;
+}
+
+div {
+    padding: 0px;
+}
+
+img {
+	max-width: 75%;
+}
+
+.container {
+	display: flex; 
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 600px;
+}
+
+.title-container {
+	width: 100%;
+	max-width: 600px;
+}
+
+.title {
+	max-width: 600px;
+	color: var(--accentColor);
+	font-size: 1.3em;
+	padding-bottom: 25px;
+	border-bottom: var(--lineThickness) solid white;
+}
+
+/* LANDING SCREEN */
+
+.landing-screen {
+	width: 600px;
+	max-width: 700px;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+.landing-image-container {
+	display: flex;
+	justify-content: center;
+	z-index: -1;
+	border-bottom: var(--lineThickness) solid var(--accentColor);
+}
+
+.choice-declaration-container {
+	align-items: center;
+	justify-content: left;
+}
+
+.choice-declaration {
+	padding-bottom: 25px;
+}
+
+.choice-box {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.input {
+	display: inline;
+	background-color: black;
+	font-family: "Arial";
+    font-size: 0.5em;
+    color: white;
+    border: 3px var(--accentColor) solid;
+	margin: 0px auto;
+    padding: 0px;
+}
+
+.landing-bottom-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: right;
+}
+
+.landing-bottom {
+	width: 50%;
+	min-width: 25%;
+	text-align: right;
+}
+
+.fight-button {
+	width: 25%;
+	min-width: 25%;
+	display: none;
+	vertical-align: top;
+	text-align: center;
+	color: white;
+	background: var(--accentColor);
+	text-transform: uppercase;
+	-webkit-text-stroke: 1px white;
+	padding-bottom: 15px;
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+.fight-button:hover {
+	color: var(--accentColor);
+	background: black;
+	border: var(--lineThickness) var(--accentColor) solid;
+	-webkit-text-stroke: 1px var(--accentColor);
+}
+
+.fight-button span {
+	margin: auto auto;
+}
+
+/* GAME SCREEN */
+
+.game-screen {
+	max-width: 1000px;
+	display: none;
+	justify-content: space-evenly;
+	align-items: space-between;
+	margin-top: 25px;	
+}
+
+.game-screen img {
+	max-width: 100%;
+}
+
+.game-element {
+	width: 33.3%;
+	height: fit-content;
+	border-bottom: var(--lineThickness) solid var(--accentColor);
+}
+
+.game-element.game-text {
+	margin-top: 15%;
+	height: 500px;
+	border: var(--lineThickness) solid var(--accentColor);
+	border-radius: 50px;
+}
+
+@font-face {
+	font-family: "ConcertOne";
+	src: url(resources/ConcertOne-Regular.ttf)
+}
+
