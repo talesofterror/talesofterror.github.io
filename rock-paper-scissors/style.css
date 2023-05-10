@@ -14,12 +14,11 @@
 body { 
 	color: white;
 	background-color: #000000;
-	font-family: Arial;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 2em;
-	margin-top: 5%;
+	margin-top: 5vh;
 }
 
 div {
@@ -27,7 +26,11 @@ div {
 }
 
 img {
-	max-width: 75%;
+	height: auto; 
+	width: auto;
+	max-height:  70vh;
+	max-width: 70vh;
+	z-index: -1;
 }
 
 .container {
@@ -36,6 +39,8 @@ img {
 	justify-content: center;
 	align-items: center;
 	max-width: 600px;
+	max-height: 85vh;
+	/* max-width: 100vw; */
 }
 
 .title-container {
@@ -44,7 +49,7 @@ img {
 }
 
 .title {
-	max-width: 600px;
+	max-width: 100%;
 	color: var(--accentColor);
 	font-size: 1.3em;
 	padding-bottom: 25px;
@@ -54,27 +59,10 @@ img {
 /* LANDING SCREEN */
 
 .landing-screen {
-	width: 600px;
-	max-width: 700px;
+	width: 100%;
 	display: block;
 	margin: 0px;
 	padding: 0px;
-}
-
-.landing-image-container {
-	display: flex;
-	justify-content: center;
-	z-index: -1;
-	border-bottom: var(--lineThickness) solid var(--accentColor);
-}
-
-.choice-declaration-container {
-	align-items: center;
-	justify-content: left;
-}
-
-.choice-declaration {
-	padding-bottom: 25px;
 }
 
 .choice-box {
@@ -93,23 +81,47 @@ img {
     padding: 0px;
 }
 
+.landing-image-container {
+	width: 100%;
+	max-width: 670vh;
+	height: 60vh;
+	display: flex;
+	justify-content: center;
+	z-index: -1;
+	border-bottom: var(--lineThickness) solid var(--accentColor);
+}
+
 .landing-bottom-container {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
 	justify-content: right;
+	/* border: 1px red solid; */
 }
 
 .landing-bottom {
-	width: 50%;
+	width: 100%;
 	min-width: 25%;
 	text-align: right;
+	/* border: 1px blue solid; */
+}
+
+.choice-declaration-container {
+	align-items: left;
+	justify-content: left;
+	width: 100%;
+	/* border: 1px red solid; */
+}
+
+.choice-declaration {
+	padding-bottom: 5px;
+	/* border: 1px blue solid; */
 }
 
 .fight-button {
-	width: 25%;
-	min-width: 25%;
+	width: 30%;
+	min-width: 30%;
 	display: none;
 	vertical-align: top;
 	text-align: center;
@@ -118,6 +130,7 @@ img {
 	text-transform: uppercase;
 	-webkit-text-stroke: 1px white;
 	padding-bottom: 15px;
+	border: var(--lineThickness) black solid;
 	border-radius: 50px;
 	cursor: pointer;
 }
@@ -136,7 +149,8 @@ img {
 /* GAME SCREEN */
 
 .game-screen {
-	max-width: 1000px;
+	max-width: 100vw;
+	max-height: 70vh;
 	display: none;
 	justify-content: space-evenly;
 	align-items: space-between;
@@ -148,16 +162,104 @@ img {
 }
 
 .game-element {
-	width: 33.3%;
+	max-width: 33.3%;
 	height: fit-content;
 	border-bottom: var(--lineThickness) solid var(--accentColor);
 }
 
-.game-element.game-text {
-	margin-top: 15%;
-	height: 500px;
+.game-text {
+	margin-top: 30.5%;
+	height: 5px;
+	transition: all 0.5s linear;
+	overflow: hidden;
+	max-height: 70vh; 
+	min-width: 33.3%;
 	border: var(--lineThickness) solid var(--accentColor);
 	border-radius: 50px;
+	padding: 15px;
+	/*background-color: rgb(0, 0, 0);*/
+}
+
+.player-box {
+	flex-shrink: 2;
+}
+
+.computer-box {
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 2;
+}
+
+.qmarks-container {
+	display: flex;
+	position: absolute;
+	/* border: red 1px solid; */
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.qmarks {
+	font-size: 1.5em;
+	text-shadow: var(--accentColor) 3px 3px;
+}
+
+.round-container {
+	flex-shrink: 1;
+	/* position: relative; */
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: space-between;
+	border: var(--lineThickness) solid var(--accentColor);
+	border-radius: 40px;
+	background-image: url("images/gametext.bg.r.fs.gif");
+	background-position: center;
+}
+
+
+.countdown {
+	flex: 1;
+	padding: 15px;
+	padding-top: 25px;
+	text-align: center;
+	font-size: 2em;
+}
+
+.round-text {
+	flex: 1;
+	padding: 15px;
+	padding-top: 10px;
+	text-align: center;
+	font-size: 1em;
+}
+
+.end-piece {
+	height: 50px;
+	width: 100%;
+	border-width: 0px;
+	padding-top: 15px;
+}
+
+video {
+	position: absolute; 
+	top: -10%;
+	left: -10%;
+	z-index: -1;
+}
+
+.video-wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow:hidden;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 @font-face {

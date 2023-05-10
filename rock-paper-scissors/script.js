@@ -1,14 +1,3 @@
-var OSName="Unknown OS";
-if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
-
-console.log('Your OS: '+OSName);
-
-// The above is to detect the operating system, in case I want to fix this issue with
-// Windows (and possibly Mac?) rendering the page differently. It probably stems from the
-// google font I'm using. 
 
 let userChoice = document.querySelector(".input")
 let choice = document.querySelector(".choice-declaration")
@@ -18,10 +7,8 @@ let landingImage = document.querySelector(".landing-image")
 let fightButton = document.querySelector(".fight-button")
 landingImage.src = "images/rps-circle-ezgif.gif"
 
-let gameScreen = document.querySelector(".game-screen")
 let container = document.querySelector(".container")
-let playerChoiceImage = document.querySelector(".player-choice-image")
-let computerChoiceImage = document.querySelector(".computer-choice-image")
+let gameScreen = document.querySelector(".game-screen")
 
 let computerOptions = ["rock", "paper", "scissors"]
 
@@ -29,6 +16,16 @@ let randomValue = (length) => Math.floor(Math.random() * length)
 let computerChooser = () => computerOptions[randomValue(3)]
 let c
 let numberOfRounds = 5
+
+let arrayTest = new Array(numberOfRounds)
+
+function arrayTestDo() {
+	for (i = 0; i < arrayTest.length; i++) {
+		arrayTest[i] = "array index " + i
+		console.log(arrayTest[i])
+	}
+}
+
 
 // EVENT LISTENER
 
@@ -61,46 +58,177 @@ function userChooser () {
 	}
 }
 
+let userChoiceString
 function userChoiceVisualizer() {
 	if (userChoice.value == "rock") {
-		landingImage.src = uVisualizerRandomizer("rock") 
+		landingImage.src = visualizerRandomizer(userChoice.value) 
 	} else if (userChoice.value == "paper") {
-		landingImage.src = uVisualizerRandomizer("paper") 
+		landingImage.src = visualizerRandomizer(userChoice.value) 
 	} else if (userChoice.value == "scissors") {
-		landingImage.src = uVisualizerRandomizer("scissors") 
-	}
+		landingImage.src = visualizerRandomizer(userChoice.value) 
+	} 
 }
 
-function uVisualizerRandomizer(type) {
-	let choicesR = ["images/b1p-rock.png", "images/b2p-rock.png"]
-	let choicesP = ["images/b1p-paper.png", "images/b2p-paper.png"]
-	let choicesS = ["images/b1p-scissors.png", "images/b2p-scissors.png"]
+function visualizerRandomizer(type) {
+	let playerRock = ["images/b1p-rock.png", "images/b2p-rock.png"]
+	let playerPaper = ["images/b1p-paper.png", "images/b2p-paper.png"]
+	let playerScissors = ["images/b1p-scissors.png", "images/b2p-scissors.png"]
 	let decision
 
 	if (type == "rock") {
-		decision = choicesR[randomValue(2)]
+		decision = playerRock[randomValue(2)]
 	} else if (type == "paper") {
-		decision = choicesP[randomValue(2)]
+		decision = playerPaper[randomValue(2)]
 	} else if (type == "scissors") {
-		decision = choicesS[randomValue(2)]
+		decision = playerScissors[randomValue(2)]
 	}
+
+	userChoiceString = decision
 
 	return decision
 }
 
-let screenState = "landing-screen"
+// GAME STATE
+
 function screenSelector() {
 	if (screenState == "landing-screen"){
 		landingScreen.style.display = "none"
 		gameScreen.style.display = "flex";
 		container.style.maxWidth = "1000px";
+		playerChoiceImage.src = userChoiceString;
+		startGame();
 		screenState = "game-screen"
 	} else if (screenState == "game-screen") {
 		landingScreen.style.display = "block"
 		gameScreen.style.display = "none";
+		gameTextBox.style.height = "5px";
+		gameTextBox.style.marginTop = "30.5%"
+		resetGame()
 		screenState = "landing-screen"
 	}
 }
+
+// GAME SCREEN
+
+/*
+need to access: 
+	- player-box.image
+	- computer-box.image
+	- game-text.round-container (for fight announcement and game rounds)
+*/
+
+let roundContainer = document.querySelector(".round-container")
+let gameTextBox = document.querySelector(".game-text")
+let playerChoiceImage = document.querySelector(".player-choice-image")
+let computerChoiceImage = document.querySelector(".computer-choice-image")
+let computerBox = document.querySelector(".computer-box")
+let screenState = "landing-screen"
+
+let qMarksContainer = document.createElement("div")
+let qmarks = document.createElement("div")
+qMarksContainer.classList.add("qmarks-container")
+qmarks.classList.add("qmarks")
+qmarks.textContent = "???"
+computerBox.insertBefore(qMarksContainer, computerChoiceImage)
+qMarksContainer.appendChild(qmarks)
+let endPiece = roundContainer.lastElementChild
+
+let countdownContainer = document.createElement("div")
+countdownContainer.classList.add("countdown")
+roundContainer.insertBefore(countdownContainer, endPiece)
+
+let t_OpeningOffset = 100
+
+function startGame () {
+	setTimeout(()=>{
+		gameTextBox.style.height = "400px";
+		gameTextBox.style.marginTop = "7%"
+		countDown()
+	}, t_OpeningOffset)
+}
+
+let t_interval = 500
+function countDown() {
+
+	for (i = 1; i <= 4; i++){
+		countDownTimeout(i)
+	}
+
+	function countDownTimeout(i) {
+		if (i == 4){
+			setTimeout(() => {
+				countdownContainer.textContent = "FIGHT!"
+				startRounds()
+			}, t_OpeningOffset + t_interval * i)
+		} else {
+			i == 1 ? 
+			setTimeout(() => {
+				countdownContainer.textContent = i
+			}, t_OpeningOffset + t_interval - 100)
+			: setTimeout(() => {
+				countdownContainer.textContent = i
+			  }, t_OpeningOffset + t_interval * i)
+		}
+	}
+}
+
+let stage = document.createElement("div")
+stage.id = "stage"
+function startRounds() {
+	roundContainer.insertBefore(stage, endPiece)
+
+	clearArea()
+	displayRounds()
+	
+	function clearArea() {
+		setTimeout(()=>{
+			countdownContainer.remove()
+		}, t_OpeningOffset + t_interval)
+	}
+
+	function displayRounds() {
+		for (i = 1; i <= numberOfRounds; i++){
+			roundsTimeout(i)
+		}
+		function roundsTimeout(i) {
+			setTimeout(()=> {
+				let r_Text = document.createElement("div")
+				r_Text.classList.add("round-text")
+				stage.appendChild(r_Text)
+				r_Text.textContent = i
+			}, t_OpeningOffset + 200 + t_interval * i)
+		}
+	}
+}
+
+function resetGame() {
+	let target = roundContainer.children[1]
+	roundContainer.removeChild(target)
+	clearInterval()
+}
+
+/* 
+onClick FIGHT: 
+	- countdown 3, 2, 1
+		- second * 1000 + timerOffsetStart
+			3: 
+	- display "FIGHT!"
+	- display rounds
+		- one at a time
+
+psuedo: 
+	for (i = 0; i < numberOfRounds; i++) {
+		timeoutFunction()
+		})
+	}
+
+	function timeoutFunction() {
+		setTimeout( ()=> {
+			makeDiv(), 
+			timerOffsetScroll + (interval * i)
+		})
+	}
+*/
 
 // GAME FUNCTIONS
 
@@ -129,10 +257,28 @@ function game() {
 }
 
 function rounds () {
-	let result = []
+	let result = [numberOfRounds]
 	for (i = 0; i < numberOfRounds; i ++) {
 		console.log("Round " + (i+ 1) + ": " + game())
 	}
+}
+
+// WINDOWS COMPATABILITY
+
+var OSName="Unknown OS";
+if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+
+console.log('Your OS: '+OSName);
+
+if (OSName=="Windows") {
+	let titleElement = document.querySelector(".title")
+	let fightButton = document.querySelector(".fight-button")
+
+	titleElement.style.paddingBottom = "5px"
+	fightButton.style.paddingBottom = "5px"
 }
 
 
