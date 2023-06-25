@@ -17,19 +17,9 @@ let computerChooser = () => computerOptions[randomValue(3)]
 let c
 let numberOfRounds = 5
 
-let arrayTest = new Array(numberOfRounds)
-
-function arrayTestDo() {
-	for (i = 0; i < arrayTest.length; i++) {
-		arrayTest[i] = "array index " + i
-		console.log(arrayTest[i])
-	}
-}
-
-
 // EVENT LISTENER
 
-addEventListener ("change", 
+userChoice.addEventListener ("change", 
 () => {
 
 userChooser()
@@ -58,7 +48,6 @@ function userChooser () {
 	}
 }
 
-let userChoiceString
 function userChoiceVisualizer() {
 	if (userChoice.value == "rock") {
 		landingImage.src = visualizerRandomizer(userChoice.value) 
@@ -70,9 +59,9 @@ function userChoiceVisualizer() {
 }
 
 function visualizerRandomizer(type) {
-	let playerRock = ["images/b1p-rock.png", "images/b2p-rock.png"]
-	let playerPaper = ["images/b1p-paper.png", "images/b2p-paper.png"]
-	let playerScissors = ["images/b1p-scissors.png", "images/b2p-scissors.png"]
+	let playerRock = ["images/b1p-r.png", "images/b2p-r.png"]
+	let playerPaper = ["images/b1p-p.png", "images/b2p-p.png"]
+	let playerScissors = ["images/b1p-s.png", "images/b2p-s.png"]
 	let decision
 
 	if (type == "rock") {
@@ -110,17 +99,11 @@ function screenSelector() {
 
 // GAME SCREEN
 
-/*
-need to access: 
-	- player-box.image
-	- computer-box.image
-	- game-text.round-container (for fight announcement and game rounds)
-*/
-
 let roundContainer = document.querySelector(".round-container")
 let gameTextBox = document.querySelector(".game-text")
 let playerChoiceImage = document.querySelector(".player-choice-image")
 let computerChoiceImage = document.querySelector(".computer-choice-image")
+let computerChoiceString
 let computerBox = document.querySelector(".computer-box")
 let screenState = "landing-screen"
 
@@ -132,13 +115,10 @@ qmarks.textContent = "???"
 computerBox.insertBefore(qMarksContainer, computerChoiceImage)
 qMarksContainer.appendChild(qmarks)
 let endPiece = roundContainer.lastElementChild
-
-let countdownContainer = document.createElement("div")
-countdownContainer.classList.add("countdown")
-roundContainer.insertBefore(countdownContainer, endPiece)
+	
+	// timeouts
 
 let t_OpeningOffset = 100
-
 function startGame () {
 	setTimeout(()=>{
 		gameTextBox.style.height = "400px";
@@ -149,6 +129,9 @@ function startGame () {
 
 let t_interval = 500
 function countDown() {
+	let countdownContainer = document.createElement("div")
+	countdownContainer.classList.add("countdown")
+	roundContainer.insertBefore(countdownContainer, roundContainer.children[1])
 
 	for (i = 1; i <= 4; i++){
 		countDownTimeout(i)
@@ -158,87 +141,255 @@ function countDown() {
 		if (i == 4){
 			setTimeout(() => {
 				countdownContainer.textContent = "FIGHT!"
+				console.log("...FIGHT!")
 				startRounds()
+
 			}, t_OpeningOffset + t_interval * i)
 		} else {
 			i == 1 ? 
 			setTimeout(() => {
 				countdownContainer.textContent = i
+				console.log(i + "...")
 			}, t_OpeningOffset + t_interval - 100)
 			: setTimeout(() => {
 				countdownContainer.textContent = i
+				console.log(i + "...")
 			  }, t_OpeningOffset + t_interval * i)
 		}
 	}
 }
 
-let stage = document.createElement("div")
-stage.id = "stage"
+let tallyCalculated = [0, 0]
 function startRounds() {
-	roundContainer.insertBefore(stage, endPiece)
+	let stage = document.createElement("div")
+	let tallyHolster = []
+	stage.id = "stage"
+	
+	function roundMaker (parent, i) {
+		let roundPlayerImg = document.createElement("div")
+		let roundComputerImg = document.createElement("div")
+		let roundNumber = document.createElement("div")
+		roundPlayerImg.classList.add("round-img")
+		roundNumber.classList.add("round-number")
+		roundComputerImg.classList.add("round-img")
+		parent.appendChild(roundPlayerImg)
+		parent.appendChild(roundNumber)
+		parent.appendChild(roundComputerImg)
+		roundNumber.textContent = "Round " + i
+		roundPlayerImg.innerHTML = `<img src="images/${iconizer("user")}">`
+		roundComputerImg.innerHTML = `<img src="images/${iconizer("not the user")}">`
+	}
 
+	function computerChoiceVisualizer (c) {
+		let computerRock = ["images/b1c-r.png", "images/b2c-r.png"]
+		let computerPaper = ["images/b1c-p.png", "images/b2c-p.png"]
+		let computerScissors = ["images/b1c-s.png", "images/b2c-s.png"]
+
+		if (c == "rock") {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerRock[0]
+			} else {
+				computerChoiceString = computerRock[1]
+			}
+		} else if (c == "paper") {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerPaper[0]
+			} else {
+				computerChoiceString = computerPaper[1]
+			}
+		} else {
+			if (userChoiceString[8] == 2){
+				computerChoiceString = computerScissors[0]
+			} else {
+				computerChoiceString = computerScissors[1]
+			}
+		}
+
+		return computerChoiceString
+	}
+
+	function iconizer (belligerent) {
+		if (belligerent == "user"){
+			if (userChoiceString[11] == "r") {
+				return "rock-sm.png"
+			} else if (userChoiceString[11] == "p") {
+				return "paper-sm.png"
+			} else {
+				return "scissors-sm.png"
+			}
+		} else {
+			if (computerChoiceString[11] == "r") {
+				return "rock-sm.png"
+			} else if (computerChoiceString[11] == "p") {
+				return "paper-sm.png"
+			} else {
+				return "scissors-sm.png"
+			}
+		}
+	}
+
+	
 	clearArea()
 	displayRounds()
 	
 	function clearArea() {
 		setTimeout(()=>{
-			countdownContainer.remove()
+			roundContainer.children[1].remove()
+			roundContainer.insertBefore(stage, endPiece)
+			// countdownContainer.remove()
 		}, t_OpeningOffset + t_interval)
 	}
 
 	function displayRounds() {
+
+		let gameInst = []
+		let resultArray = []
+
+		setTimeout (() => {
+			qmarks.textContent = ""
+			roundContainer.style.backgroundImage = "url('images/roundtext.bg.gif')"
+			roundContainer.style.backgroundColor = "var(--accentColor)"
+		}, t_OpeningOffset + 200 + t_interval)
+
 		for (i = 1; i <= numberOfRounds; i++){
 			roundsTimeout(i)
+			roundSizeTimeout(i)
+			roundsResultsTimeout(i)
+			if (i == numberOfRounds){
+				displayWinner()
+			}
 		}
+		
 		function roundsTimeout(i) {
 			setTimeout(()=> {
 				let r_Text = document.createElement("div")
 				r_Text.classList.add("round-text")
 				stage.appendChild(r_Text)
-				r_Text.textContent = i
+				gameInst = game()
+				resultArray[i] = gameInst[2]
+				computerChoiceImage.src = computerChoiceVisualizer(gameInst[1])
+				tallyHolster[i-1] = gameInst[2]
+				tallyCounter(i)
+				roundMaker(r_Text, i)
+				consoleText()
 			}, t_OpeningOffset + 200 + t_interval * i)
+			
+			function consoleText() {
+				console.log("** ROUND " + i + " **")
+				console.log("user choice = " + gameInst[0])
+				console.log("computer choice = " + gameInst[1])
+				console.log("Result = " + gameInst[2])
+			}
+		}
+
+		function roundSizeTimeout (i) {
+			setTimeout(() => {
+				document.querySelectorAll(".round-text")
+					.forEach(element => element.style.fontSize = "1em")
+			}, t_OpeningOffset + 500 + t_interval * i)
+		}
+
+		function roundsResultsTimeout (i) {
+			setTimeout(() => {
+					stage.children[i-1].style.fontSize = "1.3em"
+					stage.children[i-1].children[1].textContent = resultArray[i]
+					if (resultArray[i] == "You win!") {
+						stage.children[i-1].children[1].style.WebkitTextStroke 
+							= "1px white"
+					} else if (resultArray[i] == "You lose!") {
+						stage.children[i-1].children[1].style.WebkitTextStroke 
+							= "1px var(--accentColor)"
+						} else {
+						stage.children[i-1].children[1].style.WebkitTextStroke 
+							= "1px grey"
+					}
+					shrink(i)
+			}, t_OpeningOffset + 3000 + t_interval * i)
+			
+			function shrink (i) {
+				setTimeout(() => {
+					stage.children[i-1].style.fontSize = "1em"						
+				}, 120)	
+
+			}
 		}
 	}
+
+	function tallyCounter (i) {
+		if (tallyHolster[i-1] == "You win!") {
+			tallyCalculated[0]++
+		} else if (tallyHolster[i-1] == "You lose!") {
+			tallyCalculated[1]++
+		} else {}
+	}
+}
+
+function tallyAnalyser() {
+	let result
+
+	if (tallyCalculated[0] > tallyCalculated[1]) {
+		result = "player"
+	} else if (tallyCalculated[1] > tallyCalculated[0]) {
+		result = "computer"
+	} else {
+		result = "tie"
+	}
+
+	return result
+}
+
+titleContainer = document.querySelector(".title-container")
+function displayWinner () {
+	
+	let resetLink = document.createElement("a")
+	resetLink.setAttribute('onclick', "screenSelector()")
+	let resetButton = document.querySelector(".reset-button")
+	let resetButtonImg = document.createElement("img")
+	resetButtonImg.src = "images/refresh.png"
+
+	setTimeout(() => {
+		let winner = document.createElement("div")
+		winner.classList.add("winner")
+		let winnerImg = document.createElement("img")
+		if (tallyAnalyser() == "player") {
+			winnerImg.src = "images/bx-trophy.svg"
+		} else if (tallyAnalyser() == "computer"){
+			winnerImg.src = "images/bxs-hand-up.svg"
+		} else {
+			winnerImg.src = "images/bxs-shield-minus.svg"
+		}
+		winner.appendChild(winnerImg)
+		stage.appendChild(winner)
+		resetButton.appendChild(resetLink)
+		resetLink.appendChild(resetButtonImg)
+	}, t_OpeningOffset + 5700 + t_interval)
 }
 
 function resetGame() {
-	let target = roundContainer.children[1]
-	roundContainer.removeChild(target)
+	stage.remove()
+	userChoice.value = "default"
+	landingImage.src = "images/rps-circle-ezgif.gif"
+	computerChoiceImage.src = "images/question-marks.2.png"
+	fightButton.style.display = "none"
+	choice.style.display ="none"
+	qmarks.textContent = "???"
+	roundContainer.style.backgroundImage = "url('images/gametext.bg.r.fs.gif')"
+	tallyCalculated = tallyCalculated.map(i => 0)
+	titleContainer.children[1].children[0].remove();
 	clearInterval()
 }
 
-/* 
-onClick FIGHT: 
-	- countdown 3, 2, 1
-		- second * 1000 + timerOffsetStart
-			3: 
-	- display "FIGHT!"
-	- display rounds
-		- one at a time
-
-psuedo: 
-	for (i = 0; i < numberOfRounds; i++) {
-		timeoutFunction()
-		})
-	}
-
-	function timeoutFunction() {
-		setTimeout( ()=> {
-			makeDiv(), 
-			timerOffsetScroll + (interval * i)
-		})
-	}
-*/
 
 // GAME FUNCTIONS
 
 function game() {
-	let result
+	let outcome = []
 	c = computerChooser()
+	let result
 	if (userChoice.value == c) {
 		result = "Tie!"
 	} else if (userChoice.value == "rock" && c == "paper") {
-		result = "You lose"
+		result = "You lose!"
 	} else if (userChoice.value == "rock" && c == "scissors") {
 		result = "You win!"
 	} else if (userChoice.value == "paper" && c == "rock") {
@@ -253,15 +404,13 @@ function game() {
 		result = "You must choose rock, paper, or scissors!"
 	}
 
-	return result
+	outcome[0] = userChoice.value
+	outcome[1] = c
+	outcome[2] = result
+
+	return outcome
 }
 
-function rounds () {
-	let result = [numberOfRounds]
-	for (i = 0; i < numberOfRounds; i ++) {
-		console.log("Round " + (i+ 1) + ": " + game())
-	}
-}
 
 // WINDOWS COMPATABILITY
 
