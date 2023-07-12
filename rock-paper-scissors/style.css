@@ -121,6 +121,12 @@ img {
 	border-bottom: var(--lineThickness) solid var(--accentColor);
 }
 
+.landing-image {
+	width: 100%;
+	height: auto;
+	align-self: center;
+}
+
 .landing-bottom-container {
 	width: 100%;
 	position: relative;
@@ -373,6 +379,7 @@ video {
 		align-items: center;
 		margin: 0px;
 		width: 90% !important;
+		max-width:100%;
 		height: 90%;
 	}
 
