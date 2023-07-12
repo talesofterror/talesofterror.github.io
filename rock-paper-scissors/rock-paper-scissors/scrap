@@ -1,0 +1,94 @@
+function game() {
+	let result
+	c = computerChooser()
+	 
+	if (c == "rock") {
+		if (userChoice.value == "paper") {
+			result = console.log("You lose")
+		}
+		else if (userChoice.value == "scissors") {
+			result = console.log("You win!")
+		}
+		else if (userChoice.value == "rock") {
+			result = console.log("Tie!")
+			}
+	}
+	else if (c == "paper") {
+		if (userChoice.value == "rock") {
+			result = console.log("You win!")
+		}
+		else if (userChoice.value == "scissors") {
+			result = console.log("You lose!")
+		}
+		else if (userChoice.value == "paper") {
+			result = console.log("Tie!")
+		}
+	}
+	else if (c == "scissors") {
+		if (userChoice.value == "rock") {
+			result = console.log("You lose!")
+		}
+		else if (userChoice.value == "paper") {
+			result = console.log("You win!")
+		}
+		else if (userChoice.value == "scissors") {
+			result = console.log("Tie!")
+		}
+	}
+
+	return result
+}
+
+function game() {
+	let result
+	c = computerChooser()
+	if (userChoice.value == c) {
+		console.log("Tie!")
+	} else if (userChoice.value == "rock" && c == "paper") {
+		console.log("You lose")
+	} else if (userChoice.value == "rock" && c == "scissors") {
+		console.log("You win!")
+	} else if (userChoice.value == "paper" && c == "rock") {
+		console.log("You win!") 
+	} else if (userChoice.value == "paper" && c == "scissors") {
+		console.log("You lose!")
+	} else if (userChoice.value == "scissors" && c == "rock") {
+		console.log("You lose!") 
+	} else if (userChoice.value == "scissors" && c == "paper") {
+		console.log("You win!")
+	}
+}
+
+function game() {
+	let result
+	c = computerChooser()
+	if (userChoice.value == c) {
+		result = console.log("Tie!")
+	} 
+	else if (c == "rock") {
+		if (userChoice == "paper") {
+			result = console.log("You lose")
+		}
+		else if (userChoice == "scissors") {
+			result = console.log("You win!")
+		}
+	}
+	else if (userChoice == "paper") {
+		if (c == "rock") {
+			result = console.log("You win!")
+		}
+		else if (c == "scissors") {
+			result = console.log("You lose!")
+		}
+	}
+	else if (userChoice == "scissors") {
+		if (c == "rock") {
+			result = console.log("You lose!")
+		}
+		else if (c == "paper") {
+			result = console.log("You win!")
+		}
+	}
+
+	return result
+}
