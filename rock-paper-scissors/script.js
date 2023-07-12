@@ -342,7 +342,7 @@ titleContainer = document.querySelector(".title-container")
 function displayWinner () {
 	
 	let resetLink = document.createElement("a")
-	resetLink.setAttribute('onclick', "screenSelector()")
+	resetLink.setAttribute('onclick', "location.reload()")
 	let resetButton = document.querySelector(".reset-button")
 	let resetButtonImg = document.createElement("img")
 	resetButtonImg.src = "images/refresh.png"
