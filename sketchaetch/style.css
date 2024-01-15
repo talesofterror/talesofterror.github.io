@@ -400,6 +400,12 @@ svg {
   padding: 10px;
 } 
 
+#desktop-only-notice {
+  visibility: hidden;
+  color: var(--knobGradientEnd);
+  font-weight: bolder;
+}
+
 .display-shadow {
   box-shadow: inset 0px 0px 10px 3px var(--gridColor), 0 0 10px var(--innerBorderColor);
 }
@@ -444,5 +450,14 @@ svg {
 
   #info-text {
     width: 40%;
+  }
+}
+
+@media (max-width: 800px) {
+  main {
+    display: none;
+  }
+  #desktop-only-notice {
+    visibility: visible;
   }
 }
