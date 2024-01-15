@@ -401,7 +401,7 @@ svg {
 } 
 
 #desktop-only-notice {
-  visibility: hidden;
+  display: none;
   color: var(--knobGradientEnd);
   font-weight: bolder;
 }
@@ -458,6 +458,6 @@ svg {
     display: none;
   }
   #desktop-only-notice {
-    visibility: visible;
+    display: block;
   }
 }
