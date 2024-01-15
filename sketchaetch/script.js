@@ -52,6 +52,9 @@ let controls = {
 createScreen(controls.resolution.value)
 activateControls()
 
+
+// CONTROLS ACTIVATION
+
 function activateControls() {
 
     // add color picker listeners
@@ -182,41 +185,8 @@ function activateControls() {
   })
 }
 
-function colorCell(x, y, color) {
-  pixels[y][x].style.backgroundColor = color
-}
 
-function map(value, low1, high1, low2, high2) {
-  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-}
-
-function map256To16(color) { return map(color, 0, 15, 0, 255) }
-
-function makeRandomColorValue16() {
-  let colorVal = Math.floor(Math.random() * 16)
-  return colorVal
-}
-
-function makeRandomColorString() {
-  let r = map256To16(makeRandomColorValue16())
-  let g = map256To16(makeRandomColorValue16())
-  let b = map256To16(makeRandomColorValue16())
-  return `rgb(${r}, ${g}, ${b})`
-}
-
-function tooltipHover(event, divid) {
-  let left = event.clientX + 15 + "px";
-  let right = event.clientY + "px";
-  let div = document.getElementById(divid)
-  div.style.left = left
-  div.style.right = right
-  div.style.visibility = "visible";
-}
-
-function tooltipOff(divid) {
-  let div = document.getElementById(divid)
-  div.style.visibility = "hidden"
-}
+// SCREEN CREATION
 
 function createScreen(sizeX) {
 
@@ -309,4 +279,43 @@ function createScreen(sizeX) {
   // resolution text value
 
   controls.resolution.elementText.textContent = sizeX
+}
+
+
+// UTILITY FUNCTIONS
+
+function colorCell(x, y, color) {
+  pixels[y][x].style.backgroundColor = color
+}
+
+function map(value, low1, high1, low2, high2) {
+  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
+
+function map16to256(color) { return map(color, 0, 15, 0, 255) }
+
+function makeRandomNumber16() {
+  let colorVal = Math.floor(Math.random() * 16)
+  return colorVal
+}
+
+function makeRandomColorString() {
+  let r = map16to256(makeRandomNumber16())
+  let g = map16to256(makeRandomNumber16())
+  let b = map16to256(makeRandomNumber16())
+  return `rgb(${r}, ${g}, ${b})`
+}
+
+function tooltipHover(event, divid) {
+  let left = event.clientX + 15 + "px";
+  let right = event.clientY + "px";
+  let div = document.getElementById(divid)
+  div.style.left = left
+  div.style.right = right
+  div.style.visibility = "visible";
+}
+
+function tooltipOff(divid) {
+  let div = document.getElementById(divid)
+  div.style.visibility = "hidden"
 }
