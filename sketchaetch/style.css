@@ -44,7 +44,7 @@ a {
 
 main {
   aspect-ratio: 3 / 2;
-  width: 65%;
+  height: 75%;
   background-color: var(--deviceBG);
   background-image: url(assets/device-bg2.png);
   background-repeat: repeat;
