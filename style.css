@@ -50,7 +50,7 @@ body {
 	font-family: TangerineBold;
 	font-size: 5em;
     font-weight: bold;
-    -webkit-text-stroke: 2px rgb(255, 225, 0);
+    -webkit-text-stroke: 2px rgb(0, 255, 238);
 }
 
 @font-face {
