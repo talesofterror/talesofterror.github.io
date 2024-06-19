@@ -1,0 +1,177 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family:Poppins;
+  display: flex;
+  box-sizing: border-box;
+  border: 10px solid #000;
+  margin: 0px;
+  min-height: 875px; 
+  height: 100%;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /* box-sizing: border-box; */
+}
+
+div {
+  background-color: aquamarine;
+  border: 10px solid #000;
+  padding: 10px;
+}
+
+ul {
+  font-weight: bold;
+  li {
+    font-weight: normal;
+  }
+}
+
+img {
+  width: 40%;
+  display: inline;
+  float: left;
+  margin: 1rem;
+  background-color: #fff;
+}
+
+img + p {
+  background-color: #f0f;
+  color: #fff;
+  /* transform: skew(3deg, 3deg); */
+}
+
+img + h3 {
+  background-color: #0ff;
+  color: #000;
+}
+
+div > img:last-child  {
+  background-color: #fff0;
+}
+
+h1 {
+  line-height: 2ch;
+  font-family: "Playwrite NL";
+}
+
+#second-lisa {
+  width: 30%;
+  float: right;
+  transform: skew(5deg, 5deg);
+}
+
+#final-lisa {
+  display: block;
+  width: 100%;
+}
+
+.parent-2 > div {
+  box-sizing:border-box;
+  display: flex;
+  background-color:#ffe090;
+  border: 5px solid crimson;
+  height: auto;
+  padding: 0px;
+}
+
+.parent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25%;
+  /* min-height: 100%; no need for height when within flex box? */
+  /* height: 100%; */
+  margin: 10px;
+}
+
+.parent > div {
+  background-color: #fff;
+}
+
+.group3:last-child {
+  border-color: #f88;
+}
+
+.group3:first-child {
+  border-color: #0ff;
+}
+
+.parent > div > div {
+  background-color: #999999;
+  margin: 10px;
+}
+
+.parent-2 {
+  font-size: clamp(0.50rem, 0.75rem + 1.5vw, 1rem);
+  width: 25%;
+  border: 5px solid #000;
+  /* height: 100%; */
+  margin: 10px;
+}
+
+.parent-2 + div {
+  line-height: 1;
+  overflow: scroll;
+  overflow-x: hidden;
+  background-color: #ddeeff;
+  border-width: 20px;
+  border-color: black;
+  width: 100%;
+  scrollbar-color:crimson turquoise;
+  /* max-inline-size: 50ch; */
+}
+
+p::after {
+  content: '\1F919';
+}
+p::before {
+  content: '\1F9D9';
+}
+p::first-line {
+  font-style: italic;
+}
+p::first-letter {
+  font-size: 2rem;
+  font-style: normal;
+}
+
+.grand-child > div {
+  margin: 10px;
+}
+
+.group2 + div {
+  background-color: #4f4;
+}
+
+.grand-child div {
+  border-color: #ccee25;
+}
+
+/* .group3 ~ div{
+  border-color: #2020ee;
+} */
+
+.grand-child ~ div{
+  border-color: #2020ee;
+}
+
+.group1 , .group2 {
+  border-color: #ff20cc;
+  background-color: crimson; /* not specific enough, ".parent > div > div" wins */ 
+}
+
+.group3:nth-child(4) {
+  border-color: #aa50ff;
+}
+
+/* nth-child selects the element that matches both the base element and child number */
+.great-grand-child:nth-child(3) {
+  border-color: #ffcc00;
+}
