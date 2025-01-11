@@ -1,0 +1,258 @@
+
+:root {
+	--main-left-margin: 30px;	
+	--green: #3e552e;
+	--lightgray: #fcfcff;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body {
+	width: 100%;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+}
+
+.logo-main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 25vh;
+	background-image: url("assets/halie-west-25xggax4bSA-unsplash.jpg");
+	background-size: cover;
+}
+
+.logo-main div {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "norse";
+	text-align: center;
+	width: 100%;
+	height: 70%;
+	color: white;
+	font-size: 5em;
+	background-color: #0007;
+	margin-top: 20px;
+}
+
+.logo img {
+	width: auto;
+	height: 80%;
+	vertical-align: middle;
+}
+
+.photo-credit:last-child {
+	font: 0.4em
+				"Arial", sans-serif;
+				font-weight: 100;
+	word-spacing: 0.4em;
+	text-align: right;
+	color: #fffa;
+	justify-content: end;
+	background-color: #0000;	
+	height: auto;
+}
+
+.photo-credit a {
+	color: #fff7;
+	margin: 0.4em;
+	text-decoration: underline;
+}
+
+@font-face {
+	font-family: "norse";
+	src: 
+		url("assets/Norse-Bold.woff") format("woff"),
+		url("assets/Norse-Bold.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.form-main {
+	font: 1.0em
+				"Arial", sans-serif;
+	background-color: var(--lightgray);
+}
+
+.form-main-top {
+	font-weight: bold;
+	margin: 40px 20px 40px var(--main-left-margin);	
+}
+
+p {
+	margin: 20px 0 10px 0;
+	letter-spacing: 0.025em;
+}
+
+.form-main-form {
+	display: flex;
+	flex-direction: column;
+	padding: 20px 20px 40px var(--main-left-margin);
+	background-color: #fff;
+	box-shadow: 0px 5px 10px #999;
+}
+
+.label-group {
+	position: relative;
+}
+
+label {
+	color: #555;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	font-size: 0.7em;
+	display: block;
+	margin: 35px 0 0 0;
+}
+
+input {
+	appearance: none;
+	width: 220px;
+	-webkit-appearance: none;
+	font-size: 1em;
+	background-color: var(--lightgray);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	outline: none;
+	padding: 5px;
+}
+
+input:focus {
+	-webkit-appearance: none;
+	border: 1px blue solid;
+	box-shadow: 5px 5px 10px #ddd;
+	outline: none;
+}
+
+.pw-check:invalid {
+	border: 1px solid red;
+}
+
+.pw-check:invalid+span:before {
+	position: absolute;
+	right: 8em;
+	top: 6.9em;
+	width: 220px;
+	font-size: 0.6em;
+	color: red;
+	content: "Enter a valid password"	
+}
+
+.pw-confirm-check {
+	border: 1px solid red;
+}
+
+.pw-confirm-check+span:before {
+	position: absolute;
+	right: 8em;
+	top: 6.9em;
+	width: 220px;
+	font-size: 0.6em;
+	color: red;
+	content: "Passwords must match"	
+}
+
+.form-main-bottom {
+	margin: 40px 20px 70px var(--main-left-margin); 
+}
+
+button {
+	font-size: 0.8em;
+	font-weight: 650;
+	appearance: none;
+	background-color: var(--green);
+	color: white;
+	border: 0px;
+	border-radius: 10px;
+	padding: 15px 60px 15px 60px;
+}
+
+.form-main-bottom p {
+	font-size: 0.8em;
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+	color: var(--green); 
+}
+
+/* 
+ * * Desktop 
+ */
+
+@media only screen and (min-width: 700px) {
+
+	body {
+		height: 100%;
+	}
+
+	main {
+		font-size: 1em;
+		height: 100vh;
+		flex-direction: row;
+	}
+	
+	.logo-main {
+		align-items: start;
+		height: 100%;
+		width: 50%
+	}
+
+	.logo-main div {
+		height: 20%;
+		margin: 13vh 0 0 0;
+	}
+
+	.logo-main img {
+		width: auto;
+		height: 70%;
+	}
+
+	.photo-credit:last-child {
+		font-size: 0.8em; important!
+	}
+
+	.photo-credit a {
+		color: #fff7;
+		margin: 0.4em;
+		text-decoration: underline;
+	}
+
+	.form-main-top {
+		margin-top: 10vh;
+		margin-bottom: 50px;
+	}
+
+	.form-main-top p {
+		margin-right: 25vw;
+	}
+
+	.input-group {
+		display: flex;
+	}
+
+	label {
+		margin-top: 2vh;
+		font-size: 0.65em;
+	}
+	
+	input {
+		font-size: 1em;
+		width: 220px;
+		margin-right: 80px;
+	}
+}
+

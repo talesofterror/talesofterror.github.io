@@ -1,0 +1,41 @@
+html body {
+  height: 100%;
+  background-color: black;
+  color: white;
+  align-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  /* position:absolute; */
+  /* margin: 10px auto; */
+  /* border: 1px rgb(255, 132, 199) solid; */
+  width: auto;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  
+}
+
+.sketchholder {
+  /* padding: 10px; */
+  display: flex;
+  background-color: rgb(27, 27, 27);
+  border: 10px rgb(0, 255, 136) double;
+  width: 450px;
+  height: 450px;
+  justify-content: center;
+  align-items:center;
+}
+
+#sketch {
+  /* margin: 10px; */
+  width:400px;
+  height: 400px;
+  border: 4px rgb(250, 255, 136) double;
+
+}
+
+

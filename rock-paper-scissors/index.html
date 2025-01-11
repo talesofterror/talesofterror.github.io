@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+
+<div class="container">
+	<div class="title-container">
+	<div class="title">Rock, Paper, Scissors
+	</div>
+	<div class="reset-button"></div>
+	</div>
+
+<!-- LANDING SCREEN -->
+
+	<div class="landing-screen">
+
+	<div class="choice-box">
+		<select class="input" placeholder="What's it gonna be?">
+				<option value="default">What's it gonna be?</option>
+				<option value="default">-------------------</option>
+				<option value="rock">Rock</option>
+				<option value="paper">Paper</option>
+				<option value="scissors">Scissors</option>
+		</select>
+	</div>
+ 
+	<div class="landing-image-container">
+		<img class="landing-image">
+	</div>   
+
+	<div class="landing-bottom-container">
+	<div class="landing-bottom">
+		<div class="choice-declaration-container">
+			<div class="choice-declaration">
+			<!-- prompt is inserted here -->
+			</div>
+		</div>
+	</div>
+
+	<div class="fight-button" onclick="screenSelector()"><span>Fight?</span></div>
+	</div>
+
+	</div>
+	
+
+<!-- GAME SCREEN -->
+
+	<div class="game-screen">
+
+		<div class="player-box game-element">
+			<img class="player-choice-image" src="">
+		</div>
+
+		<div class="game-element game-text">
+				<div class="round-container">
+				<div class="end-piece"></div>	
+
+				<div class="end-piece"></div>
+				</div>
+		</div>
+
+		<div class="computer-box game-element">
+			<img class="computer-choice-image" src="images/question-marks.2.png">
+		</div>
+
+	</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+    
+</html>

@@ -1,0 +1,67 @@
+
+
+rock, paper, scissors 
+
+p == c
+	=> tie 
+
+p == rock && c == paper
+	=> c wins 
+
+p == rock && c == scissors
+	=> p wins 
+
+p == paper && c == rock
+	=> p wins
+
+p == paper && c == scissors
+	=> c wins 
+
+p == scissors && c == rock
+	=> c wins 
+
+p == scissors && c == paper
+	=> p wins
+
+
+images: 
+
+b1p - rock		
+b1p - paper		
+b1p - scissors
+
+b1c - rock
+b1c - paper
+b1c - scissors 
+
+b2p - rock
+b2p - paper
+b2p - scissors
+
+b2c - rock 
+b2c - paper 
+b2c - scissors
+
+
+	p	c	t
+	0	5	0
+	1	4	0
+	2	3	0
+	3	2	0
+	4	1	0
+	5	0	0
+	0	4	1
+	0	3	2
+	0	2	3
+	0	1	4
+	0	0	5
+	1	4	0
+	2	3	1
+	3
+	4
+	5
+
+
+if 4 ties and 1 c win = 0 p win
+if 2 ties and 2 p win = 1 c win
+if 3 ties and 1 p win = 1 c win

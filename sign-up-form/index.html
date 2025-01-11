@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Sign-Up Form</title>
+		<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+		<main>
+
+			<div class="logo-main">
+				<div class="logo">
+					<img src="assets/odin-lined.png" alt="">
+					<span>ODIN</span>
+				</div>
+				<div class="photo-credit">
+					Photo by <a href="https://unsplash.com/photos/green-leaf-plant-in-close-up-photography-25xggax4bSA">Halie West</a> on <a href="https://unsplash.com">Unsplash</a>
+				</div>
+
+			</div>
+
+			<div class="form-main">
+
+				<div class="form-main-top">
+					<p>This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. Sign up <em>now</em> to get started.</p>
+					<p>You <em>know</em> what to do.</p>
+				</div>	
+
+				<form class="form-main-form" method="GET" action="#" id="form">					<h4>Let's do this!</h4>
+
+					<div class="input-group">
+						<div class="label-group">
+							<label for="first-name">First Name</label>
+							<input type="text" name="first-name" id="first-name" value="" required />
+						</div>
+						<div class="label-group">
+							<label for="last-name">Last Name</label>
+							<input type="text" name="last-name" id="last-name" value="" required />
+						</div>
+					</div>	
+ 
+					<div class="input-group">
+						<div class="label-group">
+							<label for="email">Email</label>
+							<input type="email" name="email" id="email" value="" placeholder="example@site.com" required />
+						</div>
+						<div class="label-group">
+							<label for="phone-number">Phone Number</label>
+							<input type="tel" pattern="\d{10,}" name="phone-number" id="phone-number" min-length=10 placeholder="000-000-0000" required />
+						</div>
+					</div>
+
+			 		<div class="input-group">
+						<div class="label-group">
+							<label for="password">Password</label>
+							<input type="password" name="password" pattern="\w{8,}" id="password" placeholder="8 character minimum" /><span></span>
+						</div>
+						<div class="label-group">
+							<label for="password-confirm">Confirm Password</label>
+							<input type="password" name="password-confirm" id="password-confirm" placeholder="Confirm password" /><span></span>
+						</div>
+					</div>
+				</form>
+
+				<div class="form-main-bottom">
+					<button type="submit" form="form">Create Account</button>
+					<div>
+						<p>Already have an account? <a href="">Log in</a></p>
+					</div>
+				</div>
+
+			</div>
+		</main>	
+		
+		<script src="script.js"></script>
+	</body>
+</html>

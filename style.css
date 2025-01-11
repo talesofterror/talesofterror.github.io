@@ -1,0 +1,59 @@
+html {
+    height: 100%;
+}
+
+body {
+    /* border: red 1px solid;  */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+
+}
+
+#myCanvas {
+    height: 76%; 
+    width: 100%;
+    height: auto;
+    padding: 0px;
+
+    justify-content: center;
+}
+
+.outerContainer {
+	position: absolute;
+	z-index: -1;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.canvasContainer {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: auto;
+
+    justify-content: center;
+    align-content: center;
+    justify-content: center; 
+}
+
+.content {
+	color: #121212;
+	font-family: TangerineBold;
+	font-size: 5em;
+    font-weight: bold;
+    -webkit-text-stroke: 2px rgb(0, 255, 238);
+}
+
+@font-face {
+    font-family: TangerineBold;
+    src: url('resources/Tangerine-Bold.ttf');
+}
