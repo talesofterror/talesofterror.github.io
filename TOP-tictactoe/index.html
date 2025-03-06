@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title># X O</title>
+		<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+		<main>
+
+			<div class="interface">
+
+				<div class="title no-select">
+					<span>#XO</span>
+				</div>
+
+				<div class="options no-select">
+
+					<div class="newgame">
+						<span onclick=`${Engine.DialogueHandler("new-game")}`>New Game</span>
+					</div>
+
+					<div class="info">
+						<span onclick=`${Engine.DialogueHandler("info")}`>Info</span>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="board no-select">
+
+				<div class="grid-bg">
+					<div class="row">
+						<div class="cell-bg" style="border-radius: 3em 3em 0 3em;"><span>-</span></div>
+						<div class="cell-bg" style="border-radius: 3em 3em 0 0;"><span>-</span></div>
+					<div class="cell-bg" style="border-radius: 3em 3em 3em 0;"><span>-</span></div>
+					</div>
+					<div class="row">
+						<div class="cell-bg" style="border-radius: 3em 0 0 3em;"><span>-</span></div>
+						<div class="cell-bg" style="border-radius: 0 0 0 0;"><span>-</span></div>
+						<div class="cell-bg" style="border-radius: 0 3em 3em 0;"><span>-</span></div>
+					</div>
+					<div class="row">
+						<div class="cell-bg" style="border-radius: 3em 0 3em 3em;"><span>-</span></div>
+						<div class="cell-bg" style="border-radius: 0 0 3em 3em;"><span>-</span></div>
+						<div class="cell-bg" style="border-radius: 0 3em 3em 3em;"><span>-</span></div>
+					</div>
+				</div>
+
+				<div class="grid" id="gameboard">
+					<div class="row">
+						<div class="cell" style="border-width: var(--cell-border-size) 0 0 var(--cell-border-size)"><span>t</span></div>
+						<div class="cell" style="border-width: var(--cell-border-size) 0 0 0"><span>i</span></div>
+						<div class="cell" style="border-width: var(--cell-border-size) var(--cell-border-size) 0 0"><span>c</span></div>
+					</div>
+					<div class="row">
+						<div class="cell" style="border-width: 0 0 0 var(--cell-border-size)"><span>t</span></div>
+						<div class="cell" style="border-width: 0 0 0 0"><span>a</span></div>
+						<div class="cell" style="border-width: 0 var(--cell-border-size) 0 0"><span>c</span></div>
+					</div>
+					<div class="row">
+						<div class="cell" style="border-width: 0 0 var(--cell-border-size) var(--cell-border-size)"><span>t</span></div>
+						<div class="cell" style="border-width: 0 0 var(--cell-border-size) 0"><span>o</span></div>
+						<div class="cell" style="border-width: 0 var(--cell-border-size) var(--cell-border-size) 0"><span>e</span></div>
+					</div>
+				</div>
+
+				<div id="game-dialogue" class="game-dialogue">
+
+					<div id="new-game-dialogue" class="invisible">
+						<p>Choose your gamepiece:</p>
+						<p><span onclick='Engine.CreateGame("x", "o")'>x</span> or <span onclick='Engine.CreateGame("o", "x")'>o</span></p>
+						<p><span>x</span> moves first</p>
+					</div>
+					<div id="result-dialogue" class="invisible">
+						<p>Results</p>
+						<p>The winner is...</p>
+						<p><span id="winner">X</span></p>
+						<p id="result-new-game" onclick='Engine.DialogueHandler("new-game")'>New game?</p>
+						</div>
+						<div id="info-dialogue" class="invisible">
+							<p>Tic Tac Toe</p>
+							<p>by <a href="https://github.com/talesofterror">talesofterror</a></p>
+							<p>The font is <a href="https://ohnotype.co/fonts/hobeaux-rococeaux">Hobeaux Rococeaux</a> by Ohno Type Co. (via Adobe)</p>
+							<p>Completed as part of <a href="https://www.theodinproject.com/">The Odin Project</a></p>
+						</div>
+
+				</div>	
+
+			</div>
+
+		</main>
+	
+	<script src="script.js"></script>
+	</body>
+
+</html>
