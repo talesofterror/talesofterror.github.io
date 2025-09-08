@@ -3,38 +3,41 @@
 let library = []
 let bookArea = document.getElementById("book-area")
 
-function Book(name, author) {
+class Book {
 
-	this.name = {
-		value: name,
+	constructor (_name, _author) {
+		this.name.value = _name
+		this.author.value = _author
+	}
+
+	name = {
 		element: createEntryElement("book-entry-info-title")	
-	},
-	this.author = {
-		value: author,
+	}
+	author = {
 		element: createEntryElement("book-entry-info-author")
-	},
-	this.pages = {
+	}
+	pages = {
 		element: createEntryElement("book-entry-info-pages"),
 		value: undefined
-	},
-	this.description = {
+	}
+	description = {
 		element: createEntryElement("book-entry-description"),
 		value: undefined
-	},
-	this.readStatus = {
+	}
+	readStatus = {
 		element: createEntryElement("book-entry-readstatus"),
 		value: undefined,
-	},
-	this.entryIcon = {
+	}
+	entryIcon = {
 		element: createEntryElement("book-entry-icon"),
 		img: document.createElement("img")
-	},
+	}
 
-	this.entryContainer = createEntryElement("book-entry"),
-	this.entryInfoContainer = createEntryElement("book-entry-info"),
-	this.entryDeleteButton = createEntryElement("book-entry-delete"),
-	this.listenersAdded = false,
-	this.index = 0
+	entryContainer = createEntryElement("book-entry")
+	entryInfoContainer = createEntryElement("book-entry-info")
+	entryDeleteButton = createEntryElement("book-entry-delete")
+	listenersAdded = false
+	index = 0
 }
 
 function refreshLibrary() {
@@ -83,10 +86,12 @@ function addListeners (book) {
 		book.entryContainer.addEventListener("mouseover", ()=> {
 			book.entryDeleteButton.style.display = "block"
 			book.entryIcon.img.src = "assets/BookOpen.svg"
+			book.entryContainer.className = "book-entry active"
 		})
 		book.entryContainer.addEventListener("mouseout", ()=> {
 			book.entryDeleteButton.style.display = "none"
 			book.entryIcon.img.src = "assets/BookClosed.svg"
+			book.entryContainer.className = "book-entry"
 		})
 	}
 }
